@@ -17,18 +17,21 @@ function News() {
     
     const data = await rawdata.json()
     setNews(data.articles)
+    console.log(data)
   }
 
   return (
     <div className="App">
-      <h1>News Page</h1>
-      {news.map(item => (
-        <div key={item.title}>
-          <Link to={`/news/${item.title}`}>
-            <p>{item.title}</p>
-          </Link>
+      <div className="container mt-4">
+        <div className="row">
+        {news.map(item => (
+            <div key={item.title} className="col-md-3 col-sm-12">
+              <img src={item.urlToImage} alt="" className="img-fluid" />
+              <a className="text-sm text-muted" href={item.url}>{item.title}</a>
+            </div>
+        ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 }
